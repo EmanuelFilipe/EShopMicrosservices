@@ -4,11 +4,14 @@
                                        string ImageFile, decimal Price) : ICommand<CreateProductResult>;
     public record CreateProductResult(Guid id);
 
-    internal class CreateProductCommandHandler(IDocumentSession session) 
+    //ILogger<CreateProductCommandHandler> logger
+    internal class CreateProductCommandHandler(IDocumentSession session)
         : ICommandHandler<CreateProductCommand, CreateProductResult>
     {
         public async Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
         {
+            //logger.LogInformation("CreateProductCommandHandler.Handle call with {@command}", command);
+
             var product = new Product
             {
                 Name = command.Name,

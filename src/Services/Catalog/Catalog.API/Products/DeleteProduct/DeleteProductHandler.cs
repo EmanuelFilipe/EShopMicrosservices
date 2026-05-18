@@ -3,20 +3,13 @@
     public record DeleteProductCommand(Guid Id) : ICommand<DeleteProductResult>;
     public record DeleteProductResult(bool IsSuccess);
 
-    internal class DeleteProductHandler(IDocumentSession session, ILogger<DeleteProductHandler> logger)
-        : ICommandHandler<DeleteProductCommand, DeleteProductResult>
+    internal class DeleteProductHandler(IDocumentSession session) : ICommandHandler<DeleteProductCommand, DeleteProductResult>
     {
         public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
         {
-            logger.LogInformation("DeleteProductHandler.Handle called with {@Command}", command);
-
             var product = await session.LoadAsync<Product>(command.Id, cancellationToken);
 
-            if (product is null)
-            {
-                logger.LogWarning("Product with id {Id} not found", command.Id);
-                return new DeleteProductResult(false);
-            }
+            if (product is null) return new DeleteProductResult(false);
 
             session.Delete(product);
             await session.SaveChangesAsync(cancellationToken);
