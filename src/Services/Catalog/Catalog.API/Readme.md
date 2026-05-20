@@ -1,6 +1,11 @@
 # PARA EXECUTAR COMANDOS DOCKER, LEMBRE-SE DE ESTAR NO DIRETÓRIO /src
 
 # para executar o docker compose, execute o comando abaixo na raiz do projeto:
+
+## para parar as imagens
+docker compose down -v
+
+## para subir as imagens
 docker compose up -d
 
 # se aparecer essis como esses ao tentar subir o docker desktop:
