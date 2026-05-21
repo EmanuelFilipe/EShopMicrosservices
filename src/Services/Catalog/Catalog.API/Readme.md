@@ -8,6 +8,25 @@ docker compose down -v
 ## para subir as imagens
 docker compose up -d
 
+## erro de algum banco `BasketDb` não existe, melhor apagar tudo e gerar as imagens novamente
+docker stop distributedcache
+docker stop catalogdb
+docker stop basketdb
+
+docker rm distributedcache
+docker rm catalogdb
+docker rm basketdb
+
+docker compose down -v
+
+docker container prune
+
+docker compose up --build
+
+>> assim o banco deve subir novamente
+docker exec -it basketdb psql -U postgres
+\l
+
 # se aparecer essis como esses ao tentar subir o docker desktop:
 Docker Desktop - 
 Remaining Processes Some remaining processes cannot be terminated: Docker Desktop.exe
@@ -46,4 +65,10 @@ psql -U postgres # para acessar o psql com o usuário postgres
 
 # lista as tabelas desse banco
 \d
+
+# Redis
+## para saber se o redis esta funcionando apos execução do docker-compose
+no docker desktop clique em redis > aba exec
+digite: redis-cli + Enter
+ping > deve aparecer PONG
 
