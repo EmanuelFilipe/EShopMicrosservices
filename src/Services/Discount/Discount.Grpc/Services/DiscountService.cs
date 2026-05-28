@@ -3,7 +3,6 @@ using Discount.Grpc.Models;
 using Grpc.Core;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using System.Net.WebSockets;
 
 namespace Discount.Grpc.Services
 {
