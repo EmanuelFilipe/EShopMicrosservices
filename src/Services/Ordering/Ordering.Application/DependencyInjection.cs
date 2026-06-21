@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Ordering.Application
 {
@@ -12,8 +8,11 @@ namespace Ordering.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             // Register application services, e.g. MediatR handlers, AutoMapper profiles, etc.
-            // services.AddMediatR(typeof(DependencyInjection).Assembly);
-            // services.AddAutoMapper(typeof(DependencyInjection).Assembly);
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
+
             return services;
         }
     }

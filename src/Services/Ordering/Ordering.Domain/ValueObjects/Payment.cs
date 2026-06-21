@@ -23,7 +23,7 @@ public record Payment
     {
         ArgumentNullException.ThrowIfNullOrWhiteSpace(cardName, nameof(cardName));
         ArgumentNullException.ThrowIfNullOrWhiteSpace(cardNumber, nameof(cardNumber));
-        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(cVV.Length, 3);
+        ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(cVV.Length, 4);
 
         return new Payment(cardName, cardNumber, expiration, cVV, paymentMethod);
     }
