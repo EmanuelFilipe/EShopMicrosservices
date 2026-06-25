@@ -2,4 +2,4 @@
 
 public record GetOrdersByNameQuery(string Name) : IQuery<GetOrdersByNameResult>;
 
-public record GetOrdersByNameResult(IEnumerable<OrderDTO> OrderDTOs);
+public record GetOrdersByNameResult(IEnumerable<OrderDTO> Orders);

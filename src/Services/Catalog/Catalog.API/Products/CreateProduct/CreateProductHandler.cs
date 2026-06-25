@@ -2,7 +2,7 @@
 {
     public record CreateProductCommand(string Name, List<string> Category, string Description, 
                                        string ImageFile, decimal Price) : ICommand<CreateProductResult>;
-    public record CreateProductResult(Guid id);
+    public record CreateProductResult(Guid Id);
 
     //ILogger<CreateProductCommandHandler> logger
     internal class CreateProductCommandHandler(IDocumentSession session)

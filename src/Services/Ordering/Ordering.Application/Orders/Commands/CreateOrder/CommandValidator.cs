@@ -7,8 +7,8 @@ public class CommandValidator : AbstractValidator<CreateOrderCommand>
 {
     public CommandValidator()
     {
-        RuleFor(x => x.orderDTO.OrderName).NotEmpty().WithMessage("Name is required");
-        RuleFor(x => x.orderDTO.CustomerId).NotEmpty().WithMessage("CustomerId is required");
-        RuleFor(x => x.orderDTO.OrderItems).NotEmpty().WithMessage("OrderItems should not be empty");
+        RuleFor(x => x.Order.OrderName).NotEmpty().WithMessage("Name is required");
+        RuleFor(x => x.Order.CustomerId).NotEmpty().WithMessage("CustomerId is required");
+        RuleFor(x => x.Order.OrderItems).NotEmpty().WithMessage("OrderItems should not be empty");
     }
 }

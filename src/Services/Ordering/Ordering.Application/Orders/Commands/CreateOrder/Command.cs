@@ -3,6 +3,6 @@ using Ordering.Application.DTOs;
 
 namespace Ordering.Application.Orders.Commands.CreateOrder;
 
-public record CreateOrderCommand(OrderDTO orderDTO) : ICommand<CreateOrderResult>;
+public record CreateOrderCommand(OrderDTO Order) : ICommand<CreateOrderResult>;
 
-public record CreateOrderResult(Guid id);
+public record CreateOrderResult(Guid Id);
