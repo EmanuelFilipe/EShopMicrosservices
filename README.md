@@ -69,3 +69,6 @@ This repository is part of my continuous learning journey in:
 * Distributed architectures
 
 New features and services are continuously being added as the project evolves.
+
+<img width="401" height="337" alt="Captura de tela 2026-07-02 144001" src="https://github.com/user-attachments/assets/0bc71b9d-ea8c-4873-8195-8e48b85d0564" />
+
