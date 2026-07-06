@@ -123,3 +123,33 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  yarpapigateways:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      # HTTPS desabilitado.
+      # Motivo:
+      # Os containers não conseguem utilizar o certificado de desenvolvimento
+      # apenas com "dotnet dev-certs https --trust".
+      # Para habilitar HTTPS no Docker é necessário exportar um certificado .pfx
+      # e configurar:
+      #   ASPNETCORE_Kestrel__Certificates__Default__Path
+      #   ASPNETCORE_Kestrel__Certificates__Default__Password
+      #
+      # Como este projeto é apenas para estudos de microsserviços,
+      # estamos utilizando apenas HTTP internamente entre os containers.
+      #
+      # - ASPNETCORE_HTTPS_PORTS=8081
+    depends_on:
+      - catalog.api
+      - basket.api
+      - ordering.api
+    ports:
+      - "6004:8080"
+      # - "6064:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
